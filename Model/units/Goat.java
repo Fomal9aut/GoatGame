@@ -129,7 +129,7 @@ public class Goat extends UpdatableUnit implements Movable {
         for (Map.Entry<Direction, Cell> entry : neighbours.entrySet()) {
             Cell cell = entry.getValue();
 
-            System.out.println(cell.position().column() + " " + cell.position().row());
+            System.out.println(cell.position().column() + " " + cell.position().row() + " " + cell.getUnit());
             if(cell.getUnit() instanceof Interactable) {
                 ((Interactable) cell.getUnit()).InteractWith(this);
                 return;

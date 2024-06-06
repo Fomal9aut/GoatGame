@@ -1,13 +1,14 @@
 package Test;
 
+import Model.gamefield.Cell;
 import Model.gamefield.Direction;
 import Model.gamefield.Pinfold;
 import Model.seeders.TestSeeder;
-import Model.units.Goat;
-import Model.units.Wall;
-import Model.units.Box;
+import Model.units.*;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 public class GoatTest {
     @Test
@@ -49,6 +50,19 @@ public class GoatTest {
         field.cell(5, 3).putUnit(new Wall());
         gt.move(Direction.south());
         Assertions.assertEquals(gt.typedOwner(), field.cell(4, 3));
+    }
+
+    @Test
+    public void GoatInteraction() {
+        Goat g = new Goat();
+        Pinfold field = new Pinfold(10, 10, new TestSeeder());
+        field.cell(3, 3).putUnit(g);
+
+        field.cell(3, 4).putUnit(new Cabbage());
+        g.Interact();
+        for (Cell cell : field) {
+            assertNotEquals(cell.getUnit(), field.Cabbage());
+        }
     }
 
     @Test

@@ -3,7 +3,7 @@ package Model.ownership;
 // Может владеть юнитом
 public interface CanOwnUnit {
 
-    Unit getUnit();
+    Object getUnit();
     boolean isEmpty();
 
     boolean putUnit(Unit init);
