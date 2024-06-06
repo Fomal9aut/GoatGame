@@ -12,7 +12,7 @@ import Model.updatableunit.UpdatableUnit;
 import java.util.Map;
 import java.util.Stack;
 
-// Робот, который может перемещаться по полю и взаимодействовать с другими юнитами
+// Коза
 public class Goat extends UpdatableUnit implements Movable {
 
     public Goat() {
