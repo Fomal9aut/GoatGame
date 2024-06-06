@@ -1,11 +1,8 @@
 package Test;
 
 import Model.gamefield.Cell;
-import Model.gamefield.Direction;
-import Model.gamefield.GameField;
-import Model.seeders.SimpleSeeder;
+import Model.gamefield.Pinfold;
 import Model.seeders.TestSeeder;
-import Model.units.Box;
 import Model.units.Cabbage;
 import Model.units.Wall;
 import org.junit.jupiter.api.Assertions;
@@ -39,7 +36,7 @@ public class CellTest {
 
     @Test
     public void neighbourOnBorderTest() {
-        GameField field = new GameField(5 ,5, new TestSeeder());
+        Pinfold field = new Pinfold(5 ,5, new TestSeeder());
         Assertions.assertNull(field.cell(0, 4).neighbour(Model.gamefield.Direction.east()));
         Assertions.assertNull(field.cell(0, 0).neighbour(Model.gamefield.Direction.west()));
         Assertions.assertNull(field.cell(4, 4).neighbour(Model.gamefield.Direction.south()));

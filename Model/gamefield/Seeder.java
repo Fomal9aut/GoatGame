@@ -3,9 +3,9 @@ package Model.gamefield;
 // Абстрактный заполнитель поля
 abstract public class Seeder {
 
-    protected GameField _field;
+    protected Pinfold _field;
 
-    void setField(GameField field) {
+    void setField(Pinfold field) {
         _field = field;
     }
 

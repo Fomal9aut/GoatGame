@@ -1,6 +1,6 @@
 package Model;
 
-import Model.gamefield.GameField;
+import Model.gamefield.Pinfold;
 import Model.gamefield.Seeder;
 import Model.units.Goat;
 import Model.updatableunit.*;
@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.EventObject;
 
 public class Game implements StateChangeListener {
-    private GameField _field;
+    private Pinfold _field;
     private boolean _gameInProcess = false;
 
     private ArrayList<GameStateListener> _listeners = new ArrayList<>();
@@ -18,10 +18,10 @@ public class Game implements StateChangeListener {
 
     public void finish() {_gameInProcess = false;}
 
-    public GameField getField() {return _field;}
+    public Pinfold getField() {return _field;}
 
     public void start(int width,int height, Seeder seeder) {
-        _field = new GameField(height, width, seeder);
+        _field = new Pinfold(height, width, seeder);
 
         _field.Goat().addListener(this);
         _field.Cabbage().addCabbageEatenListener(new CabbageEatenListener() {

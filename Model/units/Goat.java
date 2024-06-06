@@ -93,7 +93,6 @@ public class Goat extends UpdatableUnit implements Movable {
 
     public void MoveBoxWithStep(Direction direction)
     {
-        // придумать как двигать заднюю коробку
         Cell pos = typedOwner();
         Box boxForward = null, boxBehind = null;
 

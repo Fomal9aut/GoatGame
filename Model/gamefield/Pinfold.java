@@ -9,7 +9,7 @@ import Model.updatableunit.CabbageEatenEvent;
 import Model.updatableunit.CabbageEatenListener;
 
 // Прямоугольное поле, состоящее из ячеек
-public class GameField implements Iterable<Cell>, CabbageEatenListener {
+public class Pinfold implements Iterable<Cell>, CabbageEatenListener {
 
     // ---------------------- Размеры -----------------------------
 
@@ -44,7 +44,7 @@ public class GameField implements Iterable<Cell>, CabbageEatenListener {
 
     // ---------------------------- Порождение ---------------------
 
-    public GameField(int height, int width, Seeder seeder) {
+    public Pinfold(int height, int width, Seeder seeder) {
         if (width <= 0 || height <= 0) {
             throw new IllegalArgumentException();
         }
@@ -112,9 +112,9 @@ public class GameField implements Iterable<Cell>, CabbageEatenListener {
     private  class GameFieldIterator implements Iterator<Cell> {
 
         private Cell _cell = null;
-        private final GameField _field;
+        private final Pinfold _field;
 
-        public GameFieldIterator(GameField field) {
+        public GameFieldIterator(Pinfold field) {
             _field = field;
         }
 

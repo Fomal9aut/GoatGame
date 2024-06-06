@@ -13,10 +13,6 @@ public class UnitWidget extends CellItemWidget{
         this.unit = unit;
     }
 
-    public Unit getModelUnit() {
-        return unit;
-    }
-
     @Override
     public ImageIcon getSourceIcon() {
         return null;

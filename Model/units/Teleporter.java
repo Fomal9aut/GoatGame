@@ -15,11 +15,15 @@ public class Teleporter extends Unit implements Interactable {
         return teleporter;
     }
 
-    public void setTeleporter(Teleporter teleporter) {
+    private void setTeleporter(Teleporter teleporter) {
         this.teleporter = teleporter;
     }
 
     public void Connect(Teleporter teleporter) {
+        if(this == teleporter) {
+            return;
+        }
+
         this.setTeleporter(teleporter);
         teleporter.setTeleporter(this);
 

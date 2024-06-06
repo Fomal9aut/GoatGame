@@ -2,7 +2,7 @@ package View.Widgets;
 
 import Model.gamefield.Cell;
 import Model.gamefield.CellPosition;
-import Model.gamefield.GameField;
+import Model.gamefield.Pinfold;
 
 
 import Model.ownership.Unit;
@@ -10,8 +10,6 @@ import View.WidgetFactory;
 import net.miginfocom.swing.MigLayout;
 import javax.swing.*;
 import java.awt.*;
-import java.util.Collections;
-import java.util.List;
 
 public class FieldPanel extends JPanel {
     private int _horizontalCellCount = 10;
@@ -22,7 +20,7 @@ public class FieldPanel extends JPanel {
     private static final int MAX_HORIZONTAL_CELL_COUNT = 24;
     private static final int MAX_VERTICAL_CELL_COUNT = 15;
 
-    private GameField _modelField;
+    private Pinfold _modelField;
 
     public void setHorizontalCellCount(int count) throws IllegalArgumentException {
         if (count > MAX_HORIZONTAL_CELL_COUNT) {
@@ -89,16 +87,15 @@ public class FieldPanel extends JPanel {
         super();
     }
 
-    public void setModelField(GameField gameField) {
-        _modelField = gameField;
-        setHorizontalCellCount(gameField.width());
-        setVerticalCellCount(gameField.height());
+    public void setModelField(Pinfold pinfold) {
+        _modelField = pinfold;
+        setHorizontalCellCount(pinfold.width());
+        setVerticalCellCount(pinfold.height());
         setLayout(new MigLayout("gap 0"));
         prepareNewField();
         placeWidgets();
     }
-
-    public GameField getModelField()
+    public Pinfold getModelField()
     {
         return _modelField;
     }
@@ -106,7 +103,7 @@ public class FieldPanel extends JPanel {
      void placeWidgets() {
         for (Cell cell : _modelField) {
             Unit unit = cell.getUnit();
-                UnitWidget entityWidget = WidgetFactory.placeEntityWidget(unit, this);
+                UnitWidget entityWidget = WidgetFactory.placeUnitWidget(unit, this);
                 if(entityWidget == null)
                 {
                     cellAt(cell.position()).removeAll();
