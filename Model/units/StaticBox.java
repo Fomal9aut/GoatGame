@@ -4,7 +4,7 @@ import Model.gamefield.Cell;
 import Model.ownership.Unit;
 import Model.updatableunit.Interactable;
 
-public class StaticBox extends Unit implements Interactable {
+public class StaticBox extends AbstractBox implements Interactable {
 
     public StaticBox(int additionalSteps) {
         this.additionalSteps = additionalSteps;

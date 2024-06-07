@@ -9,7 +9,7 @@ import Model.updatableunit.MoveEvent;
 import Model.updatableunit.UpdatableUnit;
 
 // Коробка
-public class Box extends UpdatableUnit implements Movable {
+public class Box extends AbstractBox implements Movable {
     // ------------------- Открывание коробки ---------------------------
     public boolean canMoveTo(Cell to) {
         return to.isEmpty();
@@ -32,7 +32,6 @@ public class Box extends UpdatableUnit implements Movable {
         newPos.putUnit(unit);
         System.out.println("box moved");
 
-        fireStateChanged(new MoveEvent(this, newPos.position(), prevPosition));
     }
 
 
