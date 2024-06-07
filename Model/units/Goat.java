@@ -30,7 +30,21 @@ public class Goat extends UpdatableUnit implements Movable {
     }
 
     private static final int REQUIRED_STEPS_FOR_MOVE = 1;
-    private Stack<Key> _keys = new Stack<Key>();
+    private Stack<Key> _keys = new Stack<>();
+
+    private Stack<StaticBox> _staticBoxes = new Stack<>();
+
+    public void AddStaticBox(StaticBox box) {
+        _staticBoxes.push(box);
+    }
+
+    public StaticBox PopStaticBox() {
+        StaticBox box = _staticBoxes.pop();
+        if(box != null) return box;
+        return null;
+    }
+
+    public int staticBoxes() { return _staticBoxes.size(); }
 
     public void AddKey(Key key) {
         _keys.push(key);
@@ -55,6 +69,10 @@ public class Goat extends UpdatableUnit implements Movable {
         int retrievedSteps = Math.min(_steps, stepsValue);
         _steps -= retrievedSteps;
         return retrievedSteps;
+    }
+
+    public void addSteps(int stepValue) {
+        _steps += stepValue;
     }
 
     public boolean hasSteps() { return _steps >= REQUIRED_STEPS_FOR_MOVE;}

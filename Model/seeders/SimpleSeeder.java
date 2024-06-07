@@ -3,10 +3,7 @@ package Model.seeders;
 import Model.gamefield.Cell;
 import Model.gamefield.Direction;
 import Model.gamefield.Seeder;
-import Model.units.Box;
-import Model.units.Key;
-import Model.units.Teleporter;
-import Model.units.Wall;
+import Model.units.*;
 
 public class SimpleSeeder extends Seeder {
 
@@ -27,6 +24,9 @@ public class SimpleSeeder extends Seeder {
         underRobotCell.putUnit( new Box());
         _field.cell(4, 4).putUnit(new Key());
         _field.cell(5, 5).putUnit(new Key());
+        _field.cell(6, 5).putUnit(new StaticBox(5));
+        _field.cell(7, 5).putUnit(new StaticBox(5));
+        _field.cell(0, 5).putUnit(new StaticBoxShredder());
 
         for(int i = 0; i < _field.height(); i++)
             _field.cell(i,6).putUnit(new Wall());

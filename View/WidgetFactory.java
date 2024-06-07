@@ -6,7 +6,7 @@ import View.Widgets.*;
 
 public class WidgetFactory {
     public static UnitWidget placeUnitWidget(Unit modelUnit, FieldPanel field) {
-        UnitWidget entityWidget;
+        UnitWidget unitWidget;
 
 
         if(modelUnit == null)
@@ -15,26 +15,30 @@ public class WidgetFactory {
         }
 
         if (modelUnit instanceof Box) {
-            entityWidget = new BoxWidget((Box) modelUnit);
+            unitWidget = new BoxWidget((Box) modelUnit);
         } else if (modelUnit instanceof Wall) {
-            entityWidget = new WallWidget((Wall) modelUnit);
+            unitWidget = new WallWidget((Wall) modelUnit);
         } else if (modelUnit instanceof Cabbage) {
-            entityWidget = new CabbageWidget(field, (Cabbage) modelUnit);
+            unitWidget = new CabbageWidget(field, (Cabbage) modelUnit);
         } else if (modelUnit instanceof Goat) {
-            entityWidget = new GoatWidget((Goat) modelUnit);
+            unitWidget = new GoatWidget((Goat) modelUnit);
         } else if (modelUnit instanceof Key) {
-            entityWidget = new KeyWidget(field, (Key) modelUnit);
+            unitWidget = new KeyWidget(field, (Key) modelUnit);
         } else if (modelUnit instanceof Teleporter) {
-            entityWidget = new TeleporterWidget((Teleporter) modelUnit);
+            unitWidget = new TeleporterWidget((Teleporter) modelUnit);
+        } else if (modelUnit instanceof StaticBox) {
+            unitWidget = new StaticBoxWidget((StaticBox) modelUnit);
+        } else if (modelUnit instanceof StaticBoxShredder) {
+            unitWidget = new StaticBoxShredderWidget((StaticBoxShredder) modelUnit);
         }
         else {
             System.out.println(modelUnit.getClass());
             throw new IllegalArgumentException("Неизвестный тип сущности");
         }
         field.cellAt(modelUnit.position()).removeAll();
-        field.cellAt(modelUnit.position()).addItem(entityWidget);
+        field.cellAt(modelUnit.position()).addItem(unitWidget);
         field.cellAt(modelUnit.position()).repaint();
         field.cellAt(modelUnit.position()).revalidate();
-        return entityWidget;
+        return unitWidget;
     }
 }
