@@ -18,11 +18,11 @@ public class SimpleSeeder extends Seeder {
     @Override
     protected void seedUnits() {
 
-        Cell underRobotCell = _field.Goat().typedOwner();
-        underRobotCell = underRobotCell.neighbour(Direction.south()) ;
+        Cell underGoatCell = _field.Goat().typedOwner();
+        underGoatCell = underGoatCell.neighbour(Direction.south()) ;
         _field.cell(3, 2).putUnit( new Box() );
         _field.cell(2, 2).putUnit( new Box() );
-        underRobotCell.putUnit( new Box());
+        underGoatCell.putUnit( new Box());
 
         for(int i = 2; i < _field.height()-3; i++)
             _field.cell(i,6).putUnit(new Wall());
