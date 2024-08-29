@@ -24,7 +24,7 @@ public class SimpleSeeder extends Seeder {
         _field.cell(2, 2).putUnit( new Box() );
         underRobotCell.putUnit( new Box());
 
-        for(int i = 0; i < _field.height(); i++)
+        for(int i = 2; i < _field.height()-3; i++)
             _field.cell(i,6).putUnit(new Wall());
 
         _field.cell(4, 4).putUnit(new Grass());
