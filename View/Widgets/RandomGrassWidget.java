@@ -1,6 +1,6 @@
 package View.Widgets;
 
-import Model.units.RandomGrass;
+import Model.units.RandomBuffGrass;
 import View.ImageLoader;
 import net.miginfocom.swing.MigLayout;
 
@@ -9,7 +9,7 @@ import java.awt.*;
 import java.io.IOException;
 
 public class RandomGrassWidget extends UnitWidget {
-    public RandomGrassWidget(FieldPanel owner, RandomGrass unit)
+    public RandomGrassWidget(FieldPanel owner, RandomBuffGrass unit)
     {
         super(unit);
         setLayout(new MigLayout("nogrid"));

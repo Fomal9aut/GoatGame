@@ -2,15 +2,22 @@ package Model.units;
 
 import Model.gamefield.Cell;
 import Model.ownership.Unit;
+import Model.updatableunit.Interactable;
 
-public class RandomGrass extends Grass {
+public class BuffGrass extends Grass {
 
-    private final String Name = "Random";
+    private String Name = "Buff";
 
-    public RandomGrass(int strengthBuff, int strengthBuffDuration)
+    public BuffGrass(int strengthBuff, int strengthBuffDuration)
     {
         super(strengthBuff, strengthBuffDuration);
     }
+
+    public BuffGrass()
+    {
+       super();
+    }
+
 
     @Override
     public void InteractWith(Unit unit) {
@@ -18,7 +25,7 @@ public class RandomGrass extends Grass {
             Goat goat = (Goat)unit;
 
             //TODO
-            goat.applyRandomBuff(strengthBuff, strengthBuffDuration, Name);
+            goat.applyStrengthBuff(strengthBuff, strengthBuffDuration, Name);
             ((Cell) typedOwner()).extractUnit();
             System.out.println("Goat strength: " + goat.getStrength() + " Goat buff duration: " + goat.getStrengthBuffDuration());
         }

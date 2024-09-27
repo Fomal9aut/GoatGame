@@ -27,9 +27,9 @@ public class SimpleSeeder extends Seeder {
         for(int i = 2; i < _field.height()-3; i++)
             _field.cell(i,6).putUnit(new Wall());
 
-        _field.cell(4, 4).putUnit(new Grass());
-        _field.cell(5, 5).putUnit(new Grass(8, 10));
-        _field.cell(6, 5).putUnit(new RandomGrass(4, 10));
+        _field.cell(4, 4).putUnit(new BuffGrass());
+        _field.cell(5, 5).putUnit(new BuffGrass(8, 10));
+        _field.cell(6, 5).putUnit(new RandomBuffGrass(4, 10));
 
 
     }

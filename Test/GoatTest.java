@@ -76,7 +76,7 @@ public class GoatTest {
         field.cell(1, 1).putUnit(gt);
         field.cell(1, 2).putUnit(box1);
         field.cell(1, 3).putUnit(box2);
-        field.cell(2,1).putUnit(new Grass(3,5));
+        field.cell(2,1).putUnit(new BuffGrass(3,5));
 
         gt.Interact();
         gt.moveSeveralBoxesForwardWithStep(Direction.east());
@@ -94,7 +94,7 @@ public class GoatTest {
 
         field.cell(1, 1).putUnit(gt);
         field.cell(1, 2).putUnit(box1);
-        field.cell(2,1).putUnit(new Grass(0,5));
+        field.cell(2,1).putUnit(new BuffGrass(0,5));
 
         gt.Interact();
         gt.moveSeveralBoxesForwardWithStep(Direction.east());
@@ -121,7 +121,7 @@ public class GoatTest {
             field.cell(1, 2 + i).putUnit(boxes.get(i));
         }
 
-        field.cell(2,1).putUnit(new Grass(20,5));
+        field.cell(2,1).putUnit(new BuffGrass(20,5));
 
         gt.Interact();
         gt.moveSeveralBoxesForwardWithStep(Direction.east());

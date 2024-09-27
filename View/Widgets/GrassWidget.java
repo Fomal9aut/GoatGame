@@ -1,6 +1,6 @@
 package View.Widgets;
 
-import Model.units.Grass;
+import Model.units.BuffGrass;
 import View.ImageLoader;
 import net.miginfocom.swing.MigLayout;
 
@@ -9,7 +9,7 @@ import java.awt.*;
 import java.io.IOException;
 
 public class GrassWidget extends UnitWidget {
-    public GrassWidget(FieldPanel owner, Grass unit)
+    public GrassWidget(FieldPanel owner, BuffGrass unit)
     {
         super(unit);
         setLayout(new MigLayout("nogrid"));

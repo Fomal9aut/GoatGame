@@ -66,7 +66,7 @@ public class Goat extends UpdatableUnit implements Movable {
             else if(Objects.equals(_lastEatenGrassName, "Random"))
             {
                 Random rnd = new Random();
-                _strength += rnd.nextInt(2 * _lastEatenGrassStrength - 1) - _lastEatenGrassStrength;
+                _strength += (rnd.nextInt(2 * _lastEatenGrassStrength - 1) - _lastEatenGrassStrength);
                 _strengthBuffDuration--;
             }
         }
