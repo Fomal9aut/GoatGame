@@ -8,6 +8,8 @@ public class Grass extends Unit implements Interactable {
 
     final int strengthBuff;
 
+    private final String Name = "Buff";
+
     public int getStrengthBuff() {
         return strengthBuff;
     }
@@ -18,6 +20,12 @@ public class Grass extends Unit implements Interactable {
         return strengthBuffDuration;
     }
 
+    public Grass(int strengthBuff, int strengthBuffDuration)
+    {
+        this.strengthBuff = strengthBuff;
+        this.strengthBuffDuration = strengthBuffDuration;
+    }
+
     public Grass()
     {
         this.strengthBuff = 2;
@@ -25,19 +33,13 @@ public class Grass extends Unit implements Interactable {
     }
 
 
-    public Grass(int strengthBuff, int strengthBuffDuration)
-    {
-        this.strengthBuff = strengthBuff;
-        this.strengthBuffDuration = strengthBuffDuration;
-    }
-
     @Override
     public void InteractWith(Unit unit) {
         if(unit instanceof Goat) {
             Goat goat = (Goat)unit;
 
             //TODO
-            goat.applyStrengthBuff(strengthBuff, strengthBuffDuration);
+            goat.applyStrengthBuff(strengthBuff, strengthBuffDuration, Name);
             ((Cell) typedOwner()).extractUnit();
             System.out.println("Goat strength: " + goat.getStrength() + " Goat buff duration: " + goat.getStrengthBuffDuration());
         }

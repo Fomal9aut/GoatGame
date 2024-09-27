@@ -21,6 +21,8 @@ public class WidgetFactory {
             entityWidget = new CabbageWidget(field, (Cabbage) modelUnit);
         } else if (modelUnit instanceof Goat) {
             entityWidget = new GoatWidget((Goat) modelUnit);
+        } else if (modelUnit instanceof RandomGrass) {
+            entityWidget = new RandomGrassWidget(field, (RandomGrass) modelUnit);
         } else if (modelUnit instanceof Grass) {
             entityWidget = new GrassWidget(field, (Grass) modelUnit);
         }

@@ -29,6 +29,7 @@ public class SimpleSeeder extends Seeder {
 
         _field.cell(4, 4).putUnit(new Grass());
         _field.cell(5, 5).putUnit(new Grass(8, 10));
+        _field.cell(6, 5).putUnit(new RandomGrass(4, 10));
 
 
     }

@@ -10,6 +10,8 @@ import Model.updatableunit.MoveEvent;
 import Model.updatableunit.UpdatableUnit;
 
 import java.util.Map;
+import java.util.Objects;
+import java.util.Random;
 import java.util.Stack;
 
 // Коза
@@ -28,6 +30,8 @@ public class Goat extends UpdatableUnit implements Movable {
     private int _steps = 25;
     private int _strength = DEFAULT_STRENGTH;
     private int _strengthBuffDuration = 0;
+    private String _lastEatenGrassName;
+    private int _lastEatenGrassStrength;
 
     public int getStrength() {
         return _strength;
@@ -37,18 +41,35 @@ public class Goat extends UpdatableUnit implements Movable {
         return _strengthBuffDuration;
     }
 
-    public void applyStrengthBuff(int strengthBuff, int strengthBuffDuration) {
+    public void applyStrengthBuff(int strengthBuff, int strengthBuffDuration, String grassName) {
         _strength = strengthBuff;
         _strengthBuffDuration = strengthBuffDuration;
+        _lastEatenGrassName = grassName;
     }
+
+
+    public void applyRandomBuff(int strengthBuff, int strengthBuffDuration, String grassName) {
+        _lastEatenGrassStrength = strengthBuff;
+        _strengthBuffDuration = strengthBuffDuration;
+        _lastEatenGrassName = grassName;
+    }
+
 
 
     public void reduceBuffDuration() {
         if (_strengthBuffDuration == 0)
             _strength = DEFAULT_STRENGTH;
 
-        if (_strengthBuffDuration > 0)
-            _strengthBuffDuration--;
+        if (_strengthBuffDuration > 0) {
+            if(Objects.equals(_lastEatenGrassName, "Buff"))
+                _strengthBuffDuration--;
+            else if(Objects.equals(_lastEatenGrassName, "Random"))
+            {
+                Random rnd = new Random();
+                _strength += rnd.nextInt(2 * _lastEatenGrassStrength - 1) - _lastEatenGrassStrength;
+                _strengthBuffDuration--;
+            }
+        }
     }
 
     public void setSteps(int steps) {
