@@ -1,6 +1,6 @@
 package View.Widgets;
 
-import Model.units.BuffGrass;
+import Model.units.Grass;
 import View.ImageLoader;
 import net.miginfocom.swing.MigLayout;
 
@@ -9,17 +9,17 @@ import java.awt.*;
 import java.io.IOException;
 
 public class GrassWidget extends UnitWidget {
-    public GrassWidget(FieldPanel owner, BuffGrass unit)
+    public GrassWidget(FieldPanel owner, Grass unit)
     {
         super(unit);
         setLayout(new MigLayout("nogrid"));
 
-        JLabel strengthBuff = new JLabel(Integer.toString(unit.getStrengthBuff()));
+        JLabel strengthBuff = new JLabel(Integer.toString(unit.getGrassEffect().getBuffStrength()));
         strengthBuff.setFont(new Font("Arial", Font.BOLD, 13));
         strengthBuff.setForeground(Color.BLACK);
         add(strengthBuff, "pos 0% 75%");
 
-        JLabel strengthBuffDuration = new JLabel(Integer.toString(unit.getStrengthBuffDuration()));
+        JLabel strengthBuffDuration = new JLabel(Integer.toString(unit.getGrassEffect().getBuffDuration()));
         strengthBuffDuration.setFont(new Font("Arial", Font.BOLD, 13));
         strengthBuffDuration.setForeground(Color.BLACK);
         add(strengthBuffDuration, "pos 75% 0%");

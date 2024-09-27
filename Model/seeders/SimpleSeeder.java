@@ -4,6 +4,8 @@ import Model.gamefield.Cell;
 import Model.gamefield.Direction;
 import Model.gamefield.Seeder;
 import Model.units.*;
+import Model.units.effects.RandomBuffEffect;
+import Model.units.effects.StrengthBuffEffect;
 
 public class SimpleSeeder extends Seeder {
 
@@ -27,9 +29,9 @@ public class SimpleSeeder extends Seeder {
         for(int i = 2; i < _field.height()-3; i++)
             _field.cell(i,6).putUnit(new Wall());
 
-        _field.cell(4, 4).putUnit(new BuffGrass());
-        _field.cell(5, 5).putUnit(new BuffGrass(8, 10));
-        _field.cell(6, 5).putUnit(new RandomBuffGrass(4, 10));
+        _field.cell(4, 4).putUnit(new Grass(new StrengthBuffEffect(4, 10)));
+        _field.cell(4, 5).putUnit(new Grass(new RandomBuffEffect(4, 100)));
+
 
 
     }

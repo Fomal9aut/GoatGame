@@ -76,12 +76,12 @@ public class GoatWidget extends UnitWidget {
         _stepCounter.setForeground(Color.BLACK);
         add(_stepCounter, "pos 0% 75%");
 
-        _goatStrength = new JLabel(Integer.toString(goat.getStrength()));
+        _goatStrength = new JLabel(goat.getEffect() == null ? "0" : Integer.toString(goat.getEffect().getBuffDuration()));
         _goatStrength.setFont(new Font("Arial", Font.BOLD, 13));
         _goatStrength.setForeground(Color.BLACK);
         add(_goatStrength, "pos 75% 0%");
 
-        _goatBuffDuration = new JLabel(Integer.toString(goat.getStrengthBuffDuration()));
+        _goatBuffDuration = new JLabel(Integer.toString(goat.getStrength()));
         _goatBuffDuration.setFont(new Font("Arial", Font.BOLD, 13));
         _goatBuffDuration.setForeground(Color.BLACK);
         add(_goatBuffDuration, "pos 0% 0%");

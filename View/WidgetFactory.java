@@ -21,10 +21,8 @@ public class WidgetFactory {
             entityWidget = new CabbageWidget(field, (Cabbage) modelUnit);
         } else if (modelUnit instanceof Goat) {
             entityWidget = new GoatWidget((Goat) modelUnit);
-        } else if (modelUnit instanceof RandomBuffGrass) {
-            entityWidget = new RandomGrassWidget(field, (RandomBuffGrass) modelUnit);
-        } else if (modelUnit instanceof BuffGrass) {
-            entityWidget = new GrassWidget(field, (BuffGrass) modelUnit);
+        } else if (modelUnit instanceof Grass) {
+            entityWidget = new GrassWidget(field, (Grass) modelUnit);
         }
         else {
             System.out.println(modelUnit.getClass());

@@ -5,6 +5,7 @@ import Model.gamefield.Direction;
 import Model.gamefield.Pinfold;
 import Model.seeders.TestSeeder;
 import Model.units.*;
+import Model.units.effects.StrengthBuffEffect;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -76,7 +77,7 @@ public class GoatTest {
         field.cell(1, 1).putUnit(gt);
         field.cell(1, 2).putUnit(box1);
         field.cell(1, 3).putUnit(box2);
-        field.cell(2,1).putUnit(new BuffGrass(3,5));
+        field.cell(2,1).putUnit(new Grass(new StrengthBuffEffect(3, 5)));
 
         gt.Interact();
         gt.moveSeveralBoxesForwardWithStep(Direction.east());
@@ -94,7 +95,7 @@ public class GoatTest {
 
         field.cell(1, 1).putUnit(gt);
         field.cell(1, 2).putUnit(box1);
-        field.cell(2,1).putUnit(new BuffGrass(0,5));
+        field.cell(2,1).putUnit(new Grass(new StrengthBuffEffect(0, 5)));
 
         gt.Interact();
         gt.moveSeveralBoxesForwardWithStep(Direction.east());
@@ -121,7 +122,7 @@ public class GoatTest {
             field.cell(1, 2 + i).putUnit(boxes.get(i));
         }
 
-        field.cell(2,1).putUnit(new BuffGrass(20,5));
+        field.cell(2,1).putUnit(new Grass(new StrengthBuffEffect(20, 5)));
 
         gt.Interact();
         gt.moveSeveralBoxesForwardWithStep(Direction.east());

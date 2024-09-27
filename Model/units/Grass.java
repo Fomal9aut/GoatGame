@@ -1,32 +1,32 @@
 package Model.units;
 
+import Model.gamefield.Cell;
 import Model.ownership.Unit;
+import Model.units.effects.Effect;
 import Model.updatableunit.Interactable;
 
-public abstract class Grass extends Unit implements Interactable {
-    final int strengthBuff;
+public class Grass extends Unit implements Interactable {
 
-    private final String Name = "Buff";
+    private final Effect GrassEffect;
 
-    public int getStrengthBuff() {
-        return strengthBuff;
+    public Effect getGrassEffect() {
+        return GrassEffect;
     }
 
-    final int strengthBuffDuration;
-
-    public int getStrengthBuffDuration() {
-        return strengthBuffDuration;
-    }
-
-    public Grass(int strengthBuff, int strengthBuffDuration)
+    public Grass(Effect e)
     {
-        this.strengthBuff = strengthBuff;
-        this.strengthBuffDuration = strengthBuffDuration;
+        GrassEffect = e;
     }
 
-    public Grass()
-    {
-        this.strengthBuff = 2;
-        this.strengthBuffDuration = 5;
+    @Override
+    public void InteractWith(Unit unit) {
+        if(unit instanceof Goat) {
+            Goat goat = (Goat)unit;
+
+            //TODO
+            goat.setEffect(GrassEffect);
+            ((Cell) typedOwner()).extractUnit();
+            System.out.println("Goat strength: " + goat.getStrength() + " Goat buff duration: " + goat.getEffect().getBuffDuration());
+        }
     }
 }
