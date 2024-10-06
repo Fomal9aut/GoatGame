@@ -92,7 +92,7 @@ public class Pinfold implements Iterable<Cell>, CabbageEatenListener {
     }
 
 
-    private final Goat _goat = new Goat();
+    private final Goat _goat = new Goat(100);
 
     public Goat Goat() {
         return _goat;

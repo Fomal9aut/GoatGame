@@ -2,8 +2,6 @@ package View.Widgets;
 
 import Model.gamefield.Direction;
 import Model.units.Goat;
-import Model.updatableunit.MoveEvent;
-import Model.updatableunit.StateChangeListener;
 import View.ImageLoader;
 import net.miginfocom.swing.MigLayout;
 
@@ -12,11 +10,10 @@ import java.awt.*;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.io.IOException;
-import java.util.EventObject;
 
 public class GoatWidget extends UnitWidget {
     private static final ImageIcon icon;
-    private JLabel _stepCounter;
+    private JLabel _stepCounter, _goatStrength, _goatBuffDuration;
 
     static {
         try {
@@ -37,16 +34,16 @@ public class GoatWidget extends UnitWidget {
 
             if (e.isControlDown()) {
                 if(code == KeyEvent.VK_UP) {         // перемещаемся вверх
-                    getGoat().MoveBoxWithStep(Direction.north());
+                    getGoat().moveBoxWithStep(Direction.north());
                 }
                 else if(code == KeyEvent.VK_DOWN) {  // перемещаемся вниз
-                    getGoat().MoveBoxWithStep(Direction.south());
+                    getGoat().moveBoxWithStep(Direction.south());
                 }
                 else if(code == KeyEvent.VK_LEFT) {  // перемещаемся влево
-                    getGoat().MoveBoxWithStep(Direction.west());
+                    getGoat().moveBoxWithStep(Direction.west());
                 }
                 else if(code == KeyEvent.VK_RIGHT) { // перемещаемся вправо
-                    getGoat().MoveBoxWithStep(Direction.east());
+                    getGoat().moveBoxWithStep(Direction.east());
                 }
             }
             else{
@@ -73,10 +70,22 @@ public class GoatWidget extends UnitWidget {
 
         addKeyListener(new GoatKeyListener());
         setLayout(new MigLayout("nogrid"));
+
         _stepCounter = new JLabel(Integer.toString(goat.steps()));
         _stepCounter.setFont(new Font("Arial", Font.BOLD, 13));
         _stepCounter.setForeground(Color.BLACK);
         add(_stepCounter, "pos 0% 75%");
+
+        _goatStrength = new JLabel(goat.getEffect() == null ? "0" : Integer.toString(goat.getEffect().getBuffDuration()));
+        _goatStrength.setFont(new Font("Arial", Font.BOLD, 13));
+        _goatStrength.setForeground(Color.BLACK);
+        add(_goatStrength, "pos 75% 0%");
+
+        _goatBuffDuration = new JLabel(Integer.toString(goat.getStrength()));
+        _goatBuffDuration.setFont(new Font("Arial", Font.BOLD, 13));
+        _goatBuffDuration.setForeground(Color.BLACK);
+        add(_goatBuffDuration, "pos 0% 0%");
+
     }
 
     Goat getGoat() {

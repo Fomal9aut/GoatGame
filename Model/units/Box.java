@@ -11,6 +11,23 @@ import Model.updatableunit.UpdatableUnit;
 // Коробка
 public class Box extends UpdatableUnit implements Movable {
     // ------------------- Открывание коробки ---------------------------
+
+    public Box()
+    {
+
+    }
+
+    public Box(int weight)
+    {
+        this.weight = weight;
+    }
+
+    private int weight = 2;
+
+    public int getWeight() {
+        return weight;
+    }
+
     public boolean canMoveTo(Cell to) {
         return to.isEmpty();
     }

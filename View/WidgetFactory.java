@@ -8,7 +8,6 @@ public class WidgetFactory {
     public static UnitWidget placeUnitWidget(Unit modelUnit, FieldPanel field) {
         UnitWidget entityWidget;
 
-
         if(modelUnit == null)
         {
             return null;
@@ -22,10 +21,8 @@ public class WidgetFactory {
             entityWidget = new CabbageWidget(field, (Cabbage) modelUnit);
         } else if (modelUnit instanceof Goat) {
             entityWidget = new GoatWidget((Goat) modelUnit);
-        } else if (modelUnit instanceof Key) {
-            entityWidget = new KeyWidget(field, (Key) modelUnit);
-        } else if (modelUnit instanceof Teleporter) {
-            entityWidget = new TeleporterWidget((Teleporter) modelUnit);
+        } else if (modelUnit instanceof Grass) {
+            entityWidget = new GrassWidget(field, (Grass) modelUnit);
         }
         else {
             System.out.println(modelUnit.getClass());
