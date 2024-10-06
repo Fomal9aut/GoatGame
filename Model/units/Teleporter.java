@@ -53,10 +53,15 @@ public class Teleporter extends Unit implements Interactable {
 
     @Override
     public void InteractWith(Unit unit) {
-        if(unit instanceof Goat && ((Goat)unit).Keys() > 0) {
-            ((Goat)unit).PopKey();
-            Teleport(unit);
-            System.out.println("Keys remain: " + ((Goat)unit).Keys());
+        if(unit instanceof Goat && ((Goat)unit).items() > 0) {
+            Key key = ((Goat)unit).getItem(Key.class);
+
+            if(key != null) {
+                Teleport(unit);
+                System.out.println("Keys remain: " + ((Goat) unit).items());
+            } else {
+                System.out.println("No keys!");
+            }
         }
     }
 }

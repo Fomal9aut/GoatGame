@@ -13,18 +13,18 @@ public class KeyTest {
         Goat g = new Goat();
 
         Key k = new Key();
-        g.AddKey(k);
-        Assertions.assertEquals(g.Keys(), 1);
+        g.addItem(k);
+        Assertions.assertEquals(g.items(), 1);
 
         Key k2 = new Key();
-        g.AddKey(k2);
-        Assertions.assertEquals(g.Keys(), 2);
+        g.addItem(k2);
+        Assertions.assertEquals(g.items(), 2);
 
-        g.PopKey();
-        Assertions.assertEquals(g.Keys(), 1);
+        g.getItem(Key.class);
+        Assertions.assertEquals(g.items(), 1);
 
-        g.PopKey();
-        Assertions.assertEquals(g.Keys(), 0);
+        g.getItem(Key.class);
+        Assertions.assertEquals(g.items(), 0);
     }
 
     @Test
@@ -35,6 +35,6 @@ public class KeyTest {
 
         field.cell(3, 4).putUnit(new Key());
         g.Interact();
-        Assertions.assertEquals(g.Keys(), 1);
+        Assertions.assertEquals(g.items(), 1);
     }
 }

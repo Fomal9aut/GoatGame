@@ -2,13 +2,10 @@ package Model.units;
 
 import Model.gamefield.Cell;
 import Model.ownership.Unit;
-import Model.updatableunit.Interactable;
-import Model.updatableunit.UpdatableUnit;
-
-import java.util.EventObject;
 
 // Ключ
-public class Key extends Unit implements Interactable {
+public class Key extends Item {
+
 
     @Override
     public String toString() {
@@ -22,8 +19,8 @@ public class Key extends Unit implements Interactable {
             Goat goat = (Goat)unit;
 
             Cell c = typedOwner();
-            goat.AddKey((Key)c.extractUnit());
-            System.out.println("Keys: " + goat.Keys());
+            goat.addItem((Key)c.extractUnit());
+            System.out.println("Keys: " + goat.items());
         }
     }
 

@@ -9,8 +9,9 @@ import Model.updatableunit.Movable;
 import Model.updatableunit.MoveEvent;
 import Model.updatableunit.UpdatableUnit;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
-import java.util.Stack;
 
 // Коза
 public class Goat extends UpdatableUnit implements Movable {
@@ -30,18 +31,19 @@ public class Goat extends UpdatableUnit implements Movable {
     }
 
     private static final int REQUIRED_STEPS_FOR_MOVE = 1;
-    private Stack<Key> _keys = new Stack<Key>();
 
-    public void AddKey(Key key) {
-        _keys.push(key);
+    ItemContainer _items = new ItemContainer();
+
+    public void addItem(Item i) {
+        _items.addItem(i);
     }
 
-    public Key PopKey() {
-        Key key = _keys.pop();
-        if(key != null) return key;
-        return null;
+    public <T> T getItem(Class<T> clazz)
+    {
+       return _items.getItem(clazz);
     }
-    public int Keys() { return _keys.size(); }
+
+    public int items() { return _items._items.size(); }
 
     public int steps() {
         return _steps;
@@ -136,6 +138,38 @@ public class Goat extends UpdatableUnit implements Movable {
             }
         }
     }
+
+    class ItemContainer {
+        private List<Item> _items;
+
+        public ItemContainer(List<Item> items) {
+            _items = items != null ? items : new ArrayList<>(); // Инициализация списка, если он не передан
+        }
+
+        public ItemContainer() {
+            _items = new ArrayList<>();
+        }
+
+        public <T> T getItem(Class<T> clazz) {
+            for (Item item : _items) {
+                if (clazz.isInstance(item)) {
+
+                    T i = clazz.cast(item);
+                    _items.remove(item);
+
+                    return i;
+                }
+            }
+            return null; // Возвращает null, если ничего не найдено
+        }
+
+        public void addItem(Item item) {
+            if (item != null) {
+                _items.add(item);
+            }
+        }
+    }
+
 
     @Override
     public String toString() {
