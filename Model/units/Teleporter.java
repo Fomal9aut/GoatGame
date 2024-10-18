@@ -20,7 +20,7 @@ public class Teleporter extends Unit implements Interactable {
     }
 
     public void Connect(Teleporter teleporter) {
-        if(this == teleporter) {
+        if(this == teleporter || !(teleporter instanceof Teleporter)) {
             return;
         }
 
@@ -53,7 +53,7 @@ public class Teleporter extends Unit implements Interactable {
 
     @Override
     public void InteractWith(Unit unit) {
-        if(unit instanceof Goat && ((Goat)unit).items() > 0) {
+        if(unit instanceof Goat && ((Goat)unit).items() > 0 && teleporter != null) {
             Key key = ((Goat)unit).getItem(Key.class);
 
             if(key != null) {

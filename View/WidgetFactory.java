@@ -14,7 +14,9 @@ public class WidgetFactory {
             return null;
         }
 
-        if (modelUnit instanceof Box) {
+        if (modelUnit instanceof BoxWithUnit) {
+            entityWidget = new BoxWidget((Box) modelUnit);
+        } else if (modelUnit instanceof Box) {
             entityWidget = new BoxWidget((Box) modelUnit);
         } else if (modelUnit instanceof Wall) {
             entityWidget = new WallWidget((Wall) modelUnit);
