@@ -132,8 +132,13 @@ public class Goat extends UpdatableUnit implements Movable {
             Cell cell = entry.getValue();
 
             System.out.println(cell.position().column() + " " + cell.position().row() + " " + cell.getUnit());
+            if(cell.getUnit() instanceof Item) {
+                ((Item) cell.getUnit()).InteractWithGoat(this);
+                return;
+            }
+
             if(cell.getUnit() instanceof Interactable) {
-                ((Interactable) cell.getUnit()).InteractWith(this);
+                ((Interactable) cell.getUnit()).InteractWithGoat(this);
                 return;
             }
         }

@@ -20,15 +20,21 @@ public class BoxWithUnit extends Box implements Interactable {
 
     @Override
     public void InteractWith(Unit unit) {
-        if(unit instanceof Goat && ((Goat)unit).items() > 0) {
-            Key key = ((Goat)unit).getItem(Key.class);
+
+    }
+
+    @Override
+    public void InteractWithGoat(Goat g)
+    {
+        if(g.items() > 0) {
+            Key key = (g).getItem(Key.class);
 
             if(key != null) {
                 Cell c = typedOwner();
                 c.extractUnit();
                 c.putUnit(_unit);
 
-                System.out.println("Keys remain: " + ((Goat) unit).items());
+                System.out.println("Keys remain: " + g.items());
             } else {
                 System.out.println("No keys!");
             }
