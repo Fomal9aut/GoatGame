@@ -14,7 +14,9 @@ public class WidgetFactory {
             return null;
         }
 
-        if (modelUnit instanceof Box) {
+        if (modelUnit instanceof BoxWithUnit) {
+            entityWidget = new BoxWithUnitWidget((BoxWithUnit) modelUnit);
+        } else if (modelUnit instanceof Box) {
             entityWidget = new BoxWidget((Box) modelUnit);
         } else if (modelUnit instanceof Wall) {
             entityWidget = new WallWidget((Wall) modelUnit);
@@ -26,6 +28,8 @@ public class WidgetFactory {
             entityWidget = new KeyWidget(field, (Key) modelUnit);
         } else if (modelUnit instanceof Teleporter) {
             entityWidget = new TeleporterWidget((Teleporter) modelUnit);
+        } else if (modelUnit instanceof Wheat) {
+            entityWidget = new WheatWidget((Wheat) modelUnit);
         }
         else {
             System.out.println(modelUnit.getClass());

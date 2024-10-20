@@ -32,6 +32,7 @@ public class GoatWidget extends UnitWidget {
             int code = e.getKeyCode();
 
             if(code == KeyEvent.VK_SPACE) {
+                getGoat().GrabItem();
                 getGoat().Interact();
             }
 

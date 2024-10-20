@@ -10,14 +10,14 @@ abstract public class Seeder {
     }
 
     public void run() {
-        seedRobot();
+        seedGoat();
         seedUnits();
         seedCabbage();
     }
 
     abstract protected void seedCabbage();
 
-    abstract protected void seedRobot();
+    abstract protected void seedGoat();
 
     abstract protected void seedUnits();
 }

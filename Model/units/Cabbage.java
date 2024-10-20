@@ -28,14 +28,11 @@ public class Cabbage extends UpdatableUnit implements Interactable {
     }
 
     @Override
-    public void InteractWith(Unit unit) {
-        if (unit instanceof Goat) {
+    public void InteractWith(Goat goat) {
             Cell c = typedOwner();
             c.extractUnit();
             eatenByGoat(c.position());
             System.out.println("cabbage interacted");
-
-        }
     }
 
     @Override

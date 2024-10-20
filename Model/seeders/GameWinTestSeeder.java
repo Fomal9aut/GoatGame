@@ -9,7 +9,7 @@ public class GameWinTestSeeder extends Seeder {
     }
 
     @Override
-    protected void seedRobot() {
+    protected void seedGoat() {
         _field.cell(0, 1).putUnit(_field.Goat());
     }
 

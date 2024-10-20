@@ -47,7 +47,7 @@ public class GameTest {
             Assertions.assertFalse(result.GetResult());
         });
 
-        game.getField().Goat().setSteps(1);
+        game.getField().Goat().reduceSteps(24);
         game.getField().Goat().move(Direction.east());
     }
 }

@@ -9,7 +9,7 @@ public class TestSeeder extends Seeder {
     }
 
     @Override
-    protected void seedRobot() {
+    protected void seedGoat() {
 
     }
 

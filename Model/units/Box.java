@@ -4,13 +4,15 @@ import Model.gamefield.Cell;
 import Model.gamefield.CellPosition;
 import Model.gamefield.Direction;
 import Model.ownership.Unit;
+import Model.updatableunit.Interactable;
 import Model.updatableunit.Movable;
 import Model.updatableunit.MoveEvent;
 import Model.updatableunit.UpdatableUnit;
 
 // Коробка
 public class Box extends UpdatableUnit implements Movable {
-    // ------------------- Открывание коробки ---------------------------
+
+
     public boolean canMoveTo(Cell to) {
         return to.isEmpty();
     }

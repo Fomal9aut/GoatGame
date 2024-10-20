@@ -3,7 +3,7 @@ package Model.updatableunit;
 import Model.gamefield.CellPosition;
 
 import java.util.EventObject;
-
+// ивенты(письма)
 public class CabbageEatenEvent extends EventObject {
     private final CellPosition cabbagePos;
 

@@ -5,6 +5,7 @@ import Model.ownership.Unit;
 import java.util.EventObject;
 import java.util.Optional;
 
+// ивенты(письма)
 public class GameResultEvent extends EventObject {
 
     private final boolean gameResult;

@@ -9,8 +9,7 @@ import Model.updatableunit.Movable;
 import Model.updatableunit.MoveEvent;
 import Model.updatableunit.UpdatableUnit;
 
-import java.util.Map;
-import java.util.Stack;
+import java.util.*;
 
 // Коза
 public class Goat extends UpdatableUnit implements Movable {
@@ -19,39 +18,67 @@ public class Goat extends UpdatableUnit implements Movable {
 
     }
 
-    public Goat(int steps){
+    public Goat(int steps) {
         setSteps(steps);
     }
 
     private int _steps = 25;
 
-    public void setSteps(int steps) {
+    private void setSteps(int steps) {
         this._steps = steps;
     }
 
+    public void IncreaseSteps(int steps) {
+        this._steps += steps;
+    }
+
     private static final int REQUIRED_STEPS_FOR_MOVE = 1;
-    private Stack<Key> _keys = new Stack<Key>();
 
-    public void AddKey(Key key) {
-        _keys.push(key);
+    private List<Item> items = new ArrayList<>();
+
+    public void putItem(Item item) {
+        items.add(item);
     }
 
-    public Key PopKey() {
-        Key key = _keys.pop();
-        if(key != null) return key;
-        return null;
-    }
-    public int Keys() { return _keys.size(); }
+    public boolean hasKeys() {
 
-    public int steps() {
-        return _steps;
+        for (Item item : items) {
+            if (item instanceof Key) {
+                return true;
+            }
+        }
+        return false;
     }
+
+    public void UseKey() {
+        Iterator<Item> iterator = items.iterator();
+
+        while (iterator.hasNext()) {
+            Item item = iterator.next();
+            if (item instanceof Key) {
+                iterator.remove();
+                break;
+            }
+        }
+    }
+
+    public int Keys() {
+        int count = 0;
+        for (Item item : items) {
+            if (item instanceof Key) {
+                count++;
+            }
+        }
+        return count;
+    }
+
+    public int steps() { return _steps; }
     
     public boolean isAvailableSteps(int stepsValue) {
         return stepsValue <= _steps;
     }
     
-    protected int reduceSteps(int stepsValue) {
+    public int reduceSteps(int stepsValue) {
         int retrievedSteps = Math.min(_steps, stepsValue);
         _steps -= retrievedSteps;
         return retrievedSteps;
@@ -104,8 +131,15 @@ public class Goat extends UpdatableUnit implements Movable {
 
         if(boxBehind != null)
         {
-            move(direction);
             boxBehind.move(direction);
+            // если коробка перемещающая козу
+            if(boxBehind instanceof BoxWithUnit)
+            {
+                ((BoxWithUnit)boxBehind).InteractWith(this);
+            }
+            // если обычная коробка
+            else
+                move(direction);
         }
 
         if(pos.neighbour(direction) != null && pos.neighbour(direction).getUnit() instanceof Box)
@@ -114,11 +148,64 @@ public class Goat extends UpdatableUnit implements Movable {
             System.out.println("boxForward: " + boxForward);
         }
 
+
         if(boxForward != null) {
             boxForward.move(direction);
-            move(direction);
+            // если коробка перемещающая козу
+            if(boxForward instanceof BoxWithUnit)
+            {
+                ((BoxWithUnit)boxForward).InteractWith(this);
+            }
+            // если обычная коробка
+            else
+                move(direction);
         }
 
+    }
+
+    // коза перемещается в случайную клетку вокруг коробки
+    private void JumpAround(Box box)
+    {
+        // клетка где находится коза
+        Cell pos = typedOwner();
+        // клетка где находится коробка
+        Cell c = box.typedOwner();
+
+        // рандомайзер
+        Random rnd = new Random();
+
+        // все соседние клетки от коробки
+        Map<Direction, Cell> neighbours = c.neighbors();
+
+        // смотрим какие клетки вокруг коробки пустые
+        for (Map.Entry<Direction, Cell> entry : neighbours.entrySet()) {
+            Cell cell = entry.getValue();
+
+            // если выпала 1 и соседняя клетка пустая, перемещаем в нее козу
+            int possibility = rnd.nextInt(2);
+            if(cell.isEmpty() && possibility == 1) {
+                Unit goat = pos.extractUnit();
+                cell.putUnit(goat);
+                return;
+            }
+        }
+
+    }
+
+    public void GrabItem()
+    {
+        Cell c = typedOwner();
+        Map<Direction, Cell> neighbours = c.neighbors();
+
+        for (Map.Entry<Direction, Cell> entry : neighbours.entrySet()) {
+            Cell cell = entry.getValue();
+
+            System.out.println(cell.position().column() + " " + cell.position().row() + " " + cell.getUnit());
+            if(cell.getUnit() instanceof Item) {
+                this.putItem(((Item) cell.extractUnit()));
+                return;
+            }
+        }
     }
 
     public void Interact()

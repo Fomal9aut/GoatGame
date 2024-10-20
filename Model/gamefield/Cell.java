@@ -9,6 +9,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 // Ячейка поля
+// Может хранить в себе юнит(ТОЛЬКО ОДИН) и извлекать его из себя
 public class Cell implements CanOwnUnit {
 
 

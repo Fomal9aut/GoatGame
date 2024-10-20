@@ -4,6 +4,7 @@ import Model.gamefield.CellPosition;
 
 import java.util.EventObject;
 
+// ивенты(письма)
 public class MoveEvent extends EventObject {
 
     private final CellPosition newPosition;
