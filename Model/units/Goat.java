@@ -128,18 +128,18 @@ public class Goat extends UpdatableUnit implements Movable {
             boxBehind = (Box) pos.neighbour(direction.opposite()).getUnit();
             System.out.println("boxBehind: " + boxBehind);
         }
-
+        // если коробка с юнитом, то при ее сдивге еще и взаимодействуем сней
         if(boxBehind != null)
         {
-            boxBehind.move(direction);
-            // если коробка перемещающая козу
             if(boxBehind instanceof BoxWithUnit)
             {
                 ((BoxWithUnit)boxBehind).InteractWith(this);
+                return;
             }
             // если обычная коробка
-            else
-                move(direction);
+            move(direction);
+
+            boxBehind.move(direction);
         }
 
         if(pos.neighbour(direction) != null && pos.neighbour(direction).getUnit() instanceof Box)
@@ -155,41 +155,11 @@ public class Goat extends UpdatableUnit implements Movable {
             if(boxForward instanceof BoxWithUnit)
             {
                 ((BoxWithUnit)boxForward).InteractWith(this);
-            }
-            // если обычная коробка
-            else
-                move(direction);
-        }
-
-    }
-
-    // коза перемещается в случайную клетку вокруг коробки
-    private void JumpAround(Box box)
-    {
-        // клетка где находится коза
-        Cell pos = typedOwner();
-        // клетка где находится коробка
-        Cell c = box.typedOwner();
-
-        // рандомайзер
-        Random rnd = new Random();
-
-        // все соседние клетки от коробки
-        Map<Direction, Cell> neighbours = c.neighbors();
-
-        // смотрим какие клетки вокруг коробки пустые
-        for (Map.Entry<Direction, Cell> entry : neighbours.entrySet()) {
-            Cell cell = entry.getValue();
-
-            // если выпала 1 и соседняя клетка пустая, перемещаем в нее козу
-            int possibility = rnd.nextInt(2);
-            if(cell.isEmpty() && possibility == 1) {
-                Unit goat = pos.extractUnit();
-                cell.putUnit(goat);
                 return;
             }
+            // если обычная коробка
+                move(direction);
         }
-
     }
 
     public void GrabItem()

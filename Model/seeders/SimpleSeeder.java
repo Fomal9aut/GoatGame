@@ -20,7 +20,8 @@ public class SimpleSeeder extends Seeder {
 
         Cell underRobotCell = _field.Goat().typedOwner();
         underRobotCell = underRobotCell.neighbour( Direction.south()) ;
-        _field.cell(2, 2).putUnit( new BoxWithUnit(new Teleporter()) );
+        _field.cell(2, 2).putUnit( new BoxWithUnit(new Teleporter()));
+        _field.cell(2, 3).putUnit( new BoxWithUnit(new Wheat()));
         underRobotCell.putUnit( new Box());
         _field.cell(4, 4).putUnit(new Key());
         _field.cell(5, 5).putUnit(new Key());
